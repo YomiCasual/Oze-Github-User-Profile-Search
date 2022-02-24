@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import "./pagination.scss";
+import { useGithubSearch, useInput } from "./hooks";
+import { Hero, Pagination, SearchResults } from "./components";
 
-function App() {
+const App = () => {
+  const searchField = useInput("");
+
+  const { usersProfile, handleSearch, totalCount, isLoading, hasError } =
+    useGithubSearch(searchField.value);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Hero
+        searchField={searchField}
+        handleSearch={handleSearch}
+        isLoading={isLoading}
+      />
+      <SearchResults
+        usersProfile={usersProfile}
+        isLoading={isLoading}
+        hasError={hasError}
+      />
+      {!!usersProfile.length && !isLoading && (
+        <Pagination handleSearch={handleSearch} totalCount={totalCount} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
