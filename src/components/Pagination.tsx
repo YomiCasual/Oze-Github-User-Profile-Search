@@ -3,16 +3,21 @@ import ReactPaginate from "react-paginate";
 const Pagination = ({
   handleSearch,
   totalCount,
+  currentPage,
 }: {
-  handleSearch: () => Promise<void>;
+  handleSearch: (pageNumber?: number) => Promise<void>;
   totalCount: number;
+  currentPage: number;
 }) => {
   return (
     <div className="pagination">
       <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
-        onPageChange={handleSearch}
+        onPageChange={({ selected }) => {
+          const pageNumber = selected + 1;
+          handleSearch(pageNumber);
+        }}
         pageRangeDisplayed={5}
         pageCount={Math.ceil(totalCount / 30)}
         previousLabel="< previous"
@@ -23,6 +28,7 @@ const Pagination = ({
         containerClassName="pagination__container"
         breakLinkClassName="pagination__page--link"
         activeClassName="pagination__active--class"
+        forcePage={currentPage - 1}
       />
     </div>
   );

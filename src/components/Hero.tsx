@@ -3,7 +3,7 @@ const Hero = ({
   handleSearch,
   isLoading,
 }: {
-  handleSearch: () => Promise<void>;
+  handleSearch: (pageNumber?: number) => Promise<void>;
   searchField: {
     value: string;
     onChange: (event: any) => void;
@@ -28,7 +28,7 @@ const Hero = ({
         <button
           data-testid="search-button"
           disabled={isLoading}
-          onClick={handleSearch}
+          onClick={() => handleSearch()}
         >
           {isLoading ? "Searching..." : "Search"}
         </button>

@@ -6,8 +6,14 @@ import { Hero, Pagination, SearchResults } from "./components";
 const App = () => {
   const searchField = useInput("");
 
-  const { usersProfile, handleSearch, totalCount, isLoading, hasError } =
-    useGithubSearch(searchField.value);
+  const {
+    usersProfile,
+    handleSearch,
+    totalCount,
+    isLoading,
+    hasError,
+    currentPage,
+  } = useGithubSearch(searchField.value);
 
   return (
     <div className="App">
@@ -22,7 +28,11 @@ const App = () => {
         hasError={hasError}
       />
       {!!usersProfile.length && !isLoading && (
-        <Pagination handleSearch={handleSearch} totalCount={totalCount} />
+        <Pagination
+          handleSearch={handleSearch}
+          totalCount={totalCount}
+          currentPage={currentPage}
+        />
       )}
     </div>
   );

@@ -8,13 +8,13 @@ const SearchResults = ({
 }: {
   usersProfile: Record<string, any>[];
   isLoading: boolean;
-  hasError: boolean;
+  hasError: string;
 }) => {
   // If Error
   if (hasError) {
     return (
       <div className="loader error">
-        <h3>Error Occurred, Please search again</h3>
+        <h3>{hasError}</h3>
       </div>
     );
   }
