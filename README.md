@@ -14,7 +14,7 @@ This project was bootstrapped with
 1.  Ensure you have node installed on your system
 2.  Clone the repository by running
     ```
-    git clone
+    git clone https://github.com/YomiCasual/Oze-Github-User-Profile-Search.git
     ```
 3.  At the root folder run, open the terminal and run:
     ```
